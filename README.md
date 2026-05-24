@@ -1,4 +1,4 @@
-# 二手交易平台 (Second-hand Trading Platform)
+# 基于DApp的可追溯二手交易平台(Second-hand Trading Platform)
 
 一个基于区块链技术的去中心化二手商品交易平台，整合了React前端、Express后端、MySQL数据库和以太坊智能合约。
 
