@@ -1,0 +1,9 @@
+/* styles.css */  
+.register-form {  
+    width: 100%;
+    max-width: 400px; 
+    margin: 0 auto; /* 水平居中 */  
+    padding: 20px; /* 内边距 */  
+   
+  }
+  
