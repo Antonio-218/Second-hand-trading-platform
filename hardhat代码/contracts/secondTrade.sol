@@ -359,29 +359,6 @@ contract Seller is Utils {
         return productsByCategory;
     }
 
-    // function getProductsByPrice(uint _price) public view returns (Product[] memory) {
-    //     // 首先遍历产品列表以确定符合条件的商品数量
-    //     uint matchingProductsCount = 0;
-    //     for (uint i = 0; i< productList.length; i++) {
-    //         if (productList[i].price == _price) {
-    //             matchingProductsCount++;
-    //         }
-    //     }
-
-    //     // 根据匹配的商品数量创建一个新的memory数组
-    //     Product[] memory productsByPrice = new Product[](matchingProductsCount);
-    //     uint index = 0;
-
-    //     // 再次遍历产品列表，将符合条件的商品添加到新数组中
-    //     for (uint i = 0; i< productList.length; i++) {
-    //         if (productList[i].price == _price) {
-    //             productsByPrice[index++] = productList[i];
-    //         }
-    //     }
-
-    //     // 返回与指定价格匹配的商品列表
-    //     return productsByPrice;
-    // }
 
     // 获取商品是否已捐赠状态
     function isProductDonated(uint _productId) public view returns (bool) {
@@ -435,11 +412,6 @@ contract Seller is Utils {
     }
 
    
-    // // 检查产品是否可用的 out
-    // function isAvailableProduct(uint _productId) public view returns (bool) {
-    //     require(_productId > 0 && _productId <= productList.length, "Product ID does not exist.");
-    //     return productList[_productId - 1].isAvailable;
-    // }
    
     // 更新商家密码
     function updatePassword(string memory newPwd) public ownerOnly {
@@ -517,20 +489,6 @@ contract Seller is Utils {
         return sellerReviews;
     }
 
-    // function updateCreditScore(uint _newScore) public {
-    //     creditHistories[msg.sender].push(CreditHistory({
-    //         score: _newScore,
-    //         timestamp: block.timestamp
-    //     }));
-    // }
-
-    // function getCreditScore(address _seller) public view returns (uint) {
-    //     return creditHistories[_seller].length > 0 ? creditHistories[_seller][creditHistories[_seller].length - 1].score : 0;
-    // }
-
-    // function getCreditHistory(address _seller) public view returns (CreditHistory[] memory) {
-    //     return creditHistories[_seller];
-    // }
 
 }
 
@@ -631,21 +589,11 @@ contract Customer is Utils {
     function buyProduct(address _sellerAddress, uint _productId, uint _quantity) public payable {
         // 检查商品数量和促销状态
         Seller sellerContract = Seller(_sellerAddress);
-       // require(sellerContract.isOnSale(_productId), "Product is not on sale.");   
-       // uint availableQuantity = sellerContract.getAvailableProducts()[_productId -1].quantity;//-------------------
-       // require(_quantity <= availableQuantity, "Insufficient product quantity.");
+     
     
         // 计算订单总价
         uint totalPriceInTokens = _quantity * sellerContract.getProductPrice(_productId);  
 
-       // recordPurchaseOrder(_sellerAddress, _productId, _quantity, totalPriceInTokens);//------------------
-        // 检查顾客余额或传入的支付金额
-        //require(erc20Token.balanceOf(tx.origin) >= totalPriceInTokens, "Insufficient balance or payment amount.");
-        //erc20Token.transferBytx(_sellerAddress, totalPriceInTokens);
-        // 更新库存数量
-       // sellerContract.updateProductQuantity(_productId, availableQuantity - _quantity);
-          
-        //emit PurchaseMade(msg.sender, _sellerAddress, _productId, _quantity, totalPriceInTokens, block.timestamp);
     }
 
     // 事件声明，用于记录购买信息
